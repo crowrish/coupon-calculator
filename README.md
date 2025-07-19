@@ -81,13 +81,3 @@ npm run preview
 ## 📄 라이선스
 
 MIT License
-
-## 🤝 기여하기
-
-이슈 제보나 기능 제안은 언제든 환영합니다!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request

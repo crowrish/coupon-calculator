@@ -127,7 +127,7 @@ function CouponComparison() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-lg bg-white p-6 shadow-sm">
+      <div className="rounded-lg bg-white p-4 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-gray-900">쿠폰 정보 입력</h2>
           <button
@@ -137,7 +137,7 @@ function CouponComparison() {
             전체 초기화
           </button>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3">
           {coupons.map((coupon, index) => (
             <div key={coupon.id} className="space-y-3">
               <div className="text-center">
@@ -164,7 +164,7 @@ function CouponComparison() {
                   value={coupon.discountRate || ''}
                   onChange={(e) => handleCouponChange(coupon.id, 'discountRate', e.target.value)}
                 />
-                <div className="mt-1 flex gap-1">
+                <div className="mt-1 flex flex-wrap gap-1">
                   {[10, 20, 30].map((rate) => (
                     <button
                       key={rate}
@@ -232,11 +232,11 @@ function CouponComparison() {
         </div>
       </div>
 
-      <div className="rounded-lg bg-blue-50 p-6 shadow-sm">
+      <div className="rounded-lg bg-blue-50 p-4 shadow-sm">
         <h2 className="mb-4 text-lg font-semibold text-blue-900">💡 쿠폰별 최적 전략</h2>
         <div className="grid grid-cols-3 gap-3">
           {getOptimalStrategies().map((strategy) => (
-            <div key={strategy.coupon.id} className="rounded-md bg-white p-3">
+            <div key={strategy.coupon.id} className="rounded-md bg-white p-2">
               <div className="text-center mb-2">
                 <span className="font-medium text-gray-900 text-sm">{strategy.coupon.name}</span>
                 <div className="mt-1">
@@ -276,7 +276,7 @@ function CouponComparison() {
         </div>
       </div>
 
-      <div className="rounded-lg bg-white p-6 shadow-sm">
+      <div className="rounded-lg bg-white p-4 shadow-sm">
         <h2 className="mb-4 text-lg font-semibold text-gray-900">특정 금액으로 비교하기</h2>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -321,7 +321,7 @@ function CouponComparison() {
       </div>
 
       {results.length > 0 && (
-        <div className="rounded-lg bg-white p-6 shadow-sm">
+        <div className="rounded-lg bg-white p-4 shadow-sm">
           <h2 className="mb-4 text-lg font-semibold text-gray-900">
             {Math.round(purchaseAmount).toLocaleString()}원 구매시 비교 결과
           </h2>

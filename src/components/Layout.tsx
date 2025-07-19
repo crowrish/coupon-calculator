@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import Navigation from './Navigation'
 
 interface LayoutProps {
   children: ReactNode
@@ -14,6 +15,7 @@ function Layout({ children }: LayoutProps) {
             쿠폰 조건을 입력하고 최적의 할인 금액을 확인하세요
           </p>
         </header>
+        <Navigation />
         <main>{children}</main>
       </div>
     </div>

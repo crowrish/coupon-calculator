@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 interface Coupon {
   id: number
@@ -36,7 +36,7 @@ function CouponComparison() {
     ))
   }
 
-  const calculateComparison = () => {
+  const calculateComparison = useCallback(() => {
     const validCoupons = coupons.filter(coupon => 
       coupon.discountRate > 0 && coupon.maxDiscount > 0
     )
@@ -77,6 +77,24 @@ function CouponComparison() {
     })
     
     setResults(resultsWithRank)
+  }, [coupons, purchaseAmount])
+
+  useEffect(() => {
+    if (purchaseAmount > 0) {
+      calculateComparison()
+    } else {
+      setResults([])
+    }
+  }, [calculateComparison, purchaseAmount])
+
+  const resetAll = () => {
+    setCoupons([
+      { id: 1, name: '쿠폰 1', discountRate: 0, minPurchase: 0, maxDiscount: 0 },
+      { id: 2, name: '쿠폰 2', discountRate: 0, minPurchase: 0, maxDiscount: 0 },
+      { id: 3, name: '쿠폰 3', discountRate: 0, minPurchase: 0, maxDiscount: 0 },
+    ])
+    setPurchaseAmount(0)
+    setResults([])
   }
 
   const getOptimalStrategies = () => {
@@ -110,7 +128,15 @@ function CouponComparison() {
   return (
     <div className="space-y-6">
       <div className="rounded-lg bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-lg font-semibold text-gray-900">쿠폰 정보 입력</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-gray-900">쿠폰 정보 입력</h2>
+          <button
+            onClick={resetAll}
+            className="rounded-md bg-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+          >
+            전체 초기화
+          </button>
+        </div>
         <div className="grid grid-cols-3 gap-4">
           {coupons.map((coupon, index) => (
             <div key={coupon.id} className="space-y-3">
@@ -135,6 +161,7 @@ function CouponComparison() {
                   type="number"
                   className="block w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   placeholder="40"
+                  value={coupon.discountRate || ''}
                   onChange={(e) => handleCouponChange(coupon.id, 'discountRate', e.target.value)}
                 />
                 <div className="mt-1 flex gap-1">
@@ -159,6 +186,7 @@ function CouponComparison() {
                   type="number"
                   className="block w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   placeholder="10000"
+                  value={coupon.minPurchase || ''}
                   onChange={(e) => handleCouponChange(coupon.id, 'minPurchase', e.target.value)}
                 />
                 <div className="mt-1 flex flex-wrap gap-1">
@@ -183,6 +211,7 @@ function CouponComparison() {
                   type="number"
                   className="block w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   placeholder="5000"
+                  value={coupon.maxDiscount || ''}
                   onChange={(e) => handleCouponChange(coupon.id, 'maxDiscount', e.target.value)}
                 />
                 <div className="mt-1 flex flex-wrap gap-1">
@@ -249,26 +278,46 @@ function CouponComparison() {
 
       <div className="rounded-lg bg-white p-6 shadow-sm">
         <h2 className="mb-4 text-lg font-semibold text-gray-900">특정 금액으로 비교하기</h2>
-        <div className="mb-4">
+        <div>
           <label className="block text-sm font-medium text-gray-700">
             구매하려는 금액 (원)
           </label>
           <input
             type="number"
             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            placeholder="예: 15000"
+            placeholder="예: 15000 (입력하면 실시간으로 비교 결과를 확인할 수 있습니다)"
+            value={purchaseAmount || ''}
             onChange={(e) => setPurchaseAmount(parseFloat(e.target.value) || 0)}
           />
+          <div className="mt-2 flex flex-wrap gap-2">
+            {[10000, 15000, 20000, 30000, 50000].map((amount) => (
+              <button
+                key={amount}
+                type="button"
+                onClick={() => setPurchaseAmount(amount)}
+                className="rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
+              >
+                {amount.toLocaleString()}원
+              </button>
+            ))}
+          </div>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => setPurchaseAmount(purchaseAmount + 1000)}
+              className="rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
+            >
+              +1,000원
+            </button>
+            <button
+              type="button"
+              onClick={() => setPurchaseAmount(purchaseAmount + 10000)}
+              className="rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
+            >
+              +10,000원
+            </button>
+          </div>
         </div>
-        
-        {purchaseAmount > 0 && (
-          <button
-            onClick={calculateComparison}
-            className="w-full rounded-md bg-blue-600 px-4 py-2 text-white font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-          >
-            쿠폰 비교하기
-          </button>
-        )}
       </div>
 
       {results.length > 0 && (

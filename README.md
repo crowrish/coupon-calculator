@@ -34,8 +34,6 @@ https://crowrish.github.io/coupon-calculator/
 
 - 쿠폰 조건 저장 기능
 - 할인 히스토리 관리
-- 다크 모드 지원
-- PWA 지원 (오프라인 사용)
 
 ## 🛠 기술 스택
 

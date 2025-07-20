@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import Navigation from './Navigation'
 import ScrollToTop from './ScrollToTop'
+import InstallPrompt from './InstallPrompt'
+import OfflineIndicator from './OfflineIndicator'
 
 interface LayoutProps {
   children: ReactNode
@@ -9,7 +11,7 @@ interface LayoutProps {
 function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 font-sans flex flex-col">
-      <div className="mx-auto max-w-md px-4 py-6 flex-1">
+      <div className="mx-auto max-w-md px-4 py-6 flex-1 flex flex-col">
         <header className="mb-8 text-center">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">쿠폰 계산기</h1>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
@@ -17,7 +19,8 @@ function Layout({ children }: LayoutProps) {
           </p>
         </header>
         <Navigation />
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
+        <InstallPrompt />
       </div>
       <footer className="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
         <div className="mx-auto max-w-md px-4 py-3">
@@ -46,6 +49,7 @@ function Layout({ children }: LayoutProps) {
         </div>
       </footer>
       <ScrollToTop />
+      <OfflineIndicator />
     </div>
   )
 }

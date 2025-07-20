@@ -38,8 +38,31 @@
     }
   ],
   "start_url": "/coupon-calculator/",
+  "scope": "/coupon-calculator/",
   "display": "standalone",
-  "theme_color": "#df4b4b",
-  "background_color": "#f4f4f4",
-  "orientation": "portrait"
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "theme_color": "#3b82f6",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "utilities", "productivity"],
+  "lang": "ko",
+  "launch_handler": {
+    "client_mode": "navigate-new"
+  },
+  "shortcuts": [
+    {
+      "name": "단일 쿠폰 계산",
+      "short_name": "단일계산",
+      "description": "하나의 쿠폰으로 할인 금액을 계산합니다",
+      "url": "/coupon-calculator/",
+      "icons": [{ "src": "./icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "쿠폰 비교",
+      "short_name": "비교",
+      "description": "여러 쿠폰을 비교하여 최적의 쿠폰을 찾습니다",
+      "url": "/coupon-calculator/compare",
+      "icons": [{ "src": "./icon-192x192.png", "sizes": "192x192" }]
+    }
+  ]
 }

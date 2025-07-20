@@ -25,6 +25,21 @@ if ('serviceWorker' in navigator) {
   })
 }
 
+// 상태 표시줄 스타일 다크모드 대응
+const updateStatusBarStyle = () => {
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  const metaTag = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')
+  if (metaTag) {
+    metaTag.setAttribute('content', isDark ? 'black-translucent' : 'default')
+  }
+}
+
+// 초기 설정
+updateStatusBarStyle()
+
+// 다크모드 변경 감지
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateStatusBarStyle)
+
 // PWA 창 크기 제어
 if (window.matchMedia('(display-mode: standalone)').matches) {
   // PWA 모드에서 실행 중일 때

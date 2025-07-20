@@ -262,7 +262,7 @@ function CouponCalculator() {
       <div className="rounded-lg bg-white dark:bg-gray-800 p-6 shadow-sm">
         <h2 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">구매 금액 (선택사항)</h2>
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             구매하려는 금액 (원)
           </label>
           <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
@@ -281,7 +281,7 @@ function CouponCalculator() {
                 key={amount}
                 type="button"
                 onClick={() => handleInputChange('purchaseAmount', amount.toString())}
-                className="rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
+                className="rounded-md bg-gray-100 dark:bg-gray-600 px-2 py-1 text-xs font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
               >
                 {amount.toLocaleString()}원
               </button>
@@ -291,14 +291,14 @@ function CouponCalculator() {
             <button
               type="button"
               onClick={() => handleInputChange('purchaseAmount', (couponData.purchaseAmount + 1000).toString())}
-              className="rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
+              className="rounded-md bg-blue-100 dark:bg-blue-900 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
             >
               +1,000원
             </button>
             <button
               type="button"
               onClick={() => handleInputChange('purchaseAmount', (couponData.purchaseAmount + 10000).toString())}
-              className="rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
+              className="rounded-md bg-blue-100 dark:bg-blue-900 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
             >
               +10,000원
             </button>
@@ -308,7 +308,7 @@ function CouponCalculator() {
 
       {result && (
         <div className="rounded-lg bg-white dark:bg-gray-800 p-6 shadow-sm">
-          <h2 className="mb-4 text-lg font-semibold text-gray-900">실제 할인 계산 결과</h2>
+          <h2 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">실제 할인 계산 결과</h2>
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-gray-700 dark:text-gray-300">구매 금액:</span>

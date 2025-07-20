@@ -30,7 +30,7 @@ function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 rounded-full bg-white p-3 text-gray-600 shadow-lg hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors border border-gray-200"
+      className="fixed bottom-6 right-6 z-50 rounded-full bg-white dark:bg-gray-800 p-3 text-gray-600 dark:text-gray-300 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors border border-gray-200 dark:border-gray-600"
       aria-label="맨 위로 스크롤"
     >
       <svg

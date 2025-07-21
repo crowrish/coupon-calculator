@@ -25,7 +25,7 @@ function Layout({ children }: LayoutProps) {
       <footer className="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
         <div className="mx-auto max-w-md px-4 py-3">
           <div className="text-center text-xs text-gray-500 dark:text-gray-400">
-            <p>© 2025 쿠폰 계산기. MIT License.</p>
+            <p>MIT License</p>
             <p className="mt-1">
               <a 
                 href="https://github.com/crowrish/coupon-calculator" 
